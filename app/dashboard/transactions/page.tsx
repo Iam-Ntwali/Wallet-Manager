@@ -2,9 +2,8 @@ import { auth } from "@/auth";
 import { db } from "@/db";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
-import TransactionList from "@/components/Dashboard/Transactions/TransactionList";
 import Link from "next/link";
-// import TransactionFilters from "@/components/Dashboard/TransactionFilters";
+import TransactionsClient from "@/components/Dashboard/Transactions/TransactionsClient";
 
 async function getTransactions() {
   const session = await auth();
@@ -13,17 +12,31 @@ async function getTransactions() {
   return await db.transaction.findMany({
     where: { userId: session.user.id },
     include: {
-      account: true,
+      wallet: true,
     },
-    orderBy: { date: "desc" },
+    orderBy: {
+      date: "desc",
+    },
+  });
+}
+
+async function getWallets() {
+  const session = await auth();
+  if (!session?.user?.id) return [];
+
+  return await db.wallet.findMany({
+    where: { userId: session.user.id },
   });
 }
 
 export default async function TransactionsPage() {
-  const transactions = await getTransactions();
+  const [transactions, wallets] = await Promise.all([
+    getTransactions(),
+    getWallets(),
+  ]);
 
   return (
-    <div>
+    <div className="container mx-auto py-6 text-gray-900">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold">Transactions</h1>
         <Button>
@@ -32,8 +45,10 @@ export default async function TransactionsPage() {
         </Button>
       </div>
 
-      {/* <TransactionFilters /> */}
-      <TransactionList transactions={transactions} />
+      <TransactionsClient
+        initialTransactions={transactions}
+        wallets={wallets}
+      />
     </div>
   );
 }

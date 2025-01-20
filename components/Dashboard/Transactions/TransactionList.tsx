@@ -1,4 +1,6 @@
-import { Transaction } from "@prisma/client";
+"use client";
+
+import { Transaction, Wallet } from "@prisma/client";
 import {
   Table,
   TableBody,
@@ -7,12 +9,25 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
+import { format } from "date-fns";
+
+type TransactionWithWallet = Transaction & {
+  wallet: Wallet;
+};
 
 export default function TransactionList({
   transactions,
 }: {
-  transactions: any[];
+  transactions: TransactionWithWallet[];
 }) {
+  const formatCurrency = (amount: number, currency: string) => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: currency,
+    }).format(amount);
+  };
+
   return (
     <Table>
       <TableHeader>
@@ -21,6 +36,7 @@ export default function TransactionList({
           <TableHead>Description</TableHead>
           <TableHead>Category</TableHead>
           <TableHead>Account</TableHead>
+          <TableHead>Type</TableHead>
           <TableHead className="text-right">Amount</TableHead>
         </TableRow>
       </TableHeader>
@@ -28,16 +44,25 @@ export default function TransactionList({
         {transactions.map((transaction) => (
           <TableRow key={transaction.id}>
             <TableCell>
-              {new Date(transaction.date).toLocaleDateString()}
+              {format(new Date(transaction.date), "MMM d, yyyy")}
             </TableCell>
             <TableCell>{transaction.description}</TableCell>
-            <TableCell>{transaction.category.name}</TableCell>
-            <TableCell>{transaction.account.name}</TableCell>
+            <TableCell>{transaction.category}</TableCell>
+            <TableCell>{transaction.wallet?.name || "N/A"}</TableCell>
+            <TableCell>
+              <Badge
+                variant={
+                  transaction.type === "INCOME" ? "success" : "destructive"
+                }
+              >
+                {transaction.type}
+              </Badge>
+            </TableCell>
             <TableCell className="text-right">
-              {transaction.amount.toLocaleString("en-US", {
-                style: "currency",
-                currency: transaction.account.currency,
-              })}
+              {formatCurrency(
+                transaction.amount,
+                transaction.wallet?.currency || "RWF"
+              )}
             </TableCell>
           </TableRow>
         ))}

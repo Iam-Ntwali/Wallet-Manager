@@ -31,7 +31,7 @@ export async function createTransaction(data: CreateTransactionData) {
             id: session.user?.id,
           },
         },
-        account: {
+        wallet: {
           connect: {
             id: data.walletId,
           },

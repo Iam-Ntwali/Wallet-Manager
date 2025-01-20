@@ -81,20 +81,21 @@ model Wallet {
 }
 
 model Transaction {
-  id           String          @id @default(auto()) @map("_id") @db.ObjectId
-  type         TransactionType
-  amount       Float
-  description  String?
-  date         DateTime        @default(now())
-  category     String
-  subCategory  String?
-  account      Wallet         @relation(fields: [accountId], references: [id])
-  accountId    String          @db.ObjectId
-  user         User            @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId       String          @db.ObjectId
-  createdAt    DateTime        @default(now())
-  updatedAt    DateTime        @updatedAt
+  id          String          @id @default(auto()) @map("_id") @db.ObjectId
+  type        TransactionType
+  amount      Float
+  description String?
+  date        DateTime        @default(now())
+  category    String
+  subCategory String?
+  wallet      Wallet         @relation(fields: [walletId], references: [id])
+  walletId    String         @db.ObjectId
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String         @db.ObjectId
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
 }
+
 
 model Budget {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
