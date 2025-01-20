@@ -1,5 +1,5 @@
 import React from "react";
-import { LoginWithGoogle } from "@/components/Auth/LoginWithGoogle";
+// import { LoginWithGoogle } from "@/components/Auth/LoginWithGoogle";
 import { LoginWithGithub } from "@/components/Auth/LoginWithGithub";
 
 const SignIn = () => {
