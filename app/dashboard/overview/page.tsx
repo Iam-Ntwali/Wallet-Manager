@@ -91,7 +91,7 @@ export default async function DashboardPage() {
         <h2 className="text-2xl font-semibold">Overview</h2>
         <Button className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:bg-gradient-to-r hover:from-purple-700 hover:to-blue-700 transition-colors duration-300 ease-in-out">
           <Plus className="mr-2 h-4 w-4" />
-          <Link href="/dashboard/transactions/new">New Transaction</Link>
+          <Link href="/dashboard/budgets">Set a budget</Link>
         </Button>
       </div>
 
@@ -141,8 +141,14 @@ export default async function DashboardPage() {
 
       <div className="grid gap-6 md:grid-cols-2">
         <Card className="md:col-span-1">
-          <CardHeader>
+          <CardHeader className="flex flex-row justify-between items-center">
             <CardTitle>Recent Transactions</CardTitle>
+            <span>
+              <Button className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:bg-gradient-to-r hover:from-purple-700 hover:to-blue-700 transition-colors duration-300 ease-in-out">
+                <Plus className="mr-2 h-4 w-4" />
+                <Link href="/dashboard/transactions/new">New Transaction</Link>
+              </Button>
+            </span>
           </CardHeader>
           <CardContent>
             <Table>
