@@ -1,5 +1,6 @@
 import React from "react";
 import { LoginWithGoogle } from "@/components/Auth/LoginWithGoogle";
+import { LoginWithGithub } from "@/components/Auth/LoginWithGithub";
 
 const SignIn = () => {
   return (
@@ -9,7 +10,8 @@ const SignIn = () => {
         <p className="text-base md:text-lg text-gray-300 mb-3">
           Welcome to Wallet Manager App.
         </p>
-        <LoginWithGoogle />
+        {/* <LoginWithGoogle /> */}
+        <LoginWithGithub />
 
         <small className="text-xs text-gray-100 text-center mt-3">
           By Signing, you agree with our <br />

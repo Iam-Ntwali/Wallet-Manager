@@ -65,7 +65,7 @@ npm run dev
 
 ## Live Demo
 
-Link [here](https://wallet-manager-nextjs.vercel.app/)
+Link [https://ntwali-wallet.vercel.app/](https://ntwali-wallet.vercel.app/)
 
 ## Contributing
 

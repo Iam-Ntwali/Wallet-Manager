@@ -39,9 +39,9 @@ export default function DashboardHeader() {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <div>
-            {session?.user?.image ? (
+            {session?.user ? (
               <Image
-                src={session?.user?.image}
+                src={session?.user?.image || ""}
                 alt={session.user.name || ""}
                 width={32}
                 height={32}
