@@ -3,13 +3,7 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  LayoutDashboard,
-  Wallet,
-  Receipt,
-  PieChart,
-  Settings,
-} from "lucide-react";
+import { LayoutDashboard, Wallet, Receipt, PieChart } from "lucide-react";
 
 const routes = [
   {
@@ -28,14 +22,9 @@ const routes = [
     href: "/dashboard/transactions",
   },
   {
-    label: "Reports",
+    label: "Budgets",
     icon: PieChart,
-    href: "/dashboard/reports",
-  },
-  {
-    label: "Settings",
-    icon: Settings,
-    href: "/dashboard/settings",
+    href: "/dashboard/budgets",
   },
 ];
 
@@ -51,8 +40,10 @@ const Sidebar = () => {
               key={route.href}
               href={route.href}
               className={cn(
-                "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:bg-primary/10 rounded-lg transition",
-                pathname === route.href ? "bg-primary/10 text-primary" : ""
+                "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:bg-gradient-to-tr hover:from-blue-600 hover:to-purple-600 hover:text-white duration-300 ease-out rounded-lg transition ",
+                pathname === route.href
+                  ? "bg-gradient-to-tr from-blue-600 to-purple-600 duration-300 ease-out  text-white"
+                  : ""
               )}
             >
               <div className="flex items-center flex-1">
