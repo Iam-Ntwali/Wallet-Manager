@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WalletManager: Personal Finance Management System
+
+WalletManager is a modern financial management application that helps users track expenses, manage budgets, and gain insights into their spending habits.
+
+## Key Features
+
+- **Multi-Account Management**: Track multiple wallets (e.g., bank accounts, credit cards)
+- **Transaction Tracking**: Record and categorize income and expenses
+- **Budget Planning**: Create and monitor budgets by category
+- **Analytics Dashboard**: Visual insights into spending patterns
+- **Data Export**: Download transaction history in CSV
+- **Responsive Design**: Seamless experience across all devices
+
+## Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Authentication**: NextAuth.js
+- **Database**: MongoDB with Prisma ORM
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui
+- **Charts**: Recharts
+- **Data Export**: jsPDF, CSV
+- **Form Handling**: React Hook Form & Zod
+- **Date Handling**: date-fns
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository:
+
+```bash
+git clone https://github.com/Iam-Ntwali/WalletManager.git
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Set up environment variables:
+
+```bash
+- Rename `.env.example` to `.env`
+- Update the values with your own configurations
+DATABASE_URL="your_mongodb_url"
+AUTH_GOOGLE_ID="your_google_client_id"
+AUTH_GOOGLE_SECRET="your_google_client_secret"
+AUTH_SECRET="generate_your_auth_secret"
+```
+
+4. Run database migrations(ORM):
+
+```bash
+npx prisma init
+npx prisma db push
+```
+
+5. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Open your browser and visit `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Live Demo
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Link [here](https://wallet-manager-nextjs.vercel.app/)
 
-## Learn More
+## Contributing
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
