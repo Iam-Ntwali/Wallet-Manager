@@ -40,12 +40,12 @@ npm install
 3. Set up environment variables:
 
 ```bash
-- Rename `.env.example` to `.env`
-- Update the values with your own configurations
-DATABASE_URL="your_mongodb_url"
-AUTH_GOOGLE_ID="your_google_client_id"
-AUTH_GOOGLE_SECRET="your_google_client_secret"
-AUTH_SECRET="generate_your_auth_secret"
+Rename `.env.example` to `.env`
+Update the values with your own configurations
+- DATABASE_URL="your_mongodb_url"
+- AUTH_GOOGLE_ID="your_google_client_id"
+- AUTH_GOOGLE_SECRET="your_google_client_secret"
+- AUTH_SECRET="generate_your_auth_secret"
 ```
 
 4. Run database migrations(ORM):
