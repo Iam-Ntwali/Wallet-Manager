@@ -28,7 +28,7 @@ WalletManager is a modern financial management application that helps users trac
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/Iam-Ntwali/WalletManager.git
+git clone https://github.com/Iam-Ntwali/Wallet-Manager.git
 ```
 
 2. Install dependencies:

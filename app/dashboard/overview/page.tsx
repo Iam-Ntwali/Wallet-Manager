@@ -64,11 +64,6 @@ export default async function DashboardPage() {
     getTransactionStats(),
   ]);
 
-  const chartData = stats?.recentTransactions.map((t) => ({
-    name: format(new Date(t.date), "MMM dd"),
-    amount: t.type === "EXPENSE" ? -t.amount : t.amount,
-  }));
-
   if (!wallets.length) {
     return (
       <div className="h-full flex flex-col items-center justify-center">

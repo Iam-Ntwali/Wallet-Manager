@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { logout } from "@/actions/authActions";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { MobileSidebar } from "./MobileSidebar";
 
