@@ -4,6 +4,9 @@ import { Transaction, Wallet } from "@prisma/client";
 import { useState, useMemo } from "react";
 import TransactionList from "@/components/Dashboard/Transactions/TransactionList";
 import TransactionFilters from "@/components/Dashboard/Transactions/TransactionFilters";
+import { Button } from "@/components/ui/button";
+import { Download } from "lucide-react";
+import { format } from "date-fns";
 
 type FilterValues = {
   type?: string;
@@ -59,9 +62,43 @@ export default function TransactionsClient({
     return result;
   }, [initialTransactions, filters]);
 
+  const downloadTransactions = () => {
+    const csvContent = [
+      // Headers
+      ["Date", "Description", "Category", "Account", "Type", "Amount"].join(
+        ","
+      ),
+      // Data rows
+      ...filteredTransactions.map((t) =>
+        [
+          format(new Date(t.date), "yyyy-MM-dd"),
+          t.description,
+          t.category,
+          t.wallet.name,
+          t.type,
+          t.amount.toString(),
+        ].join(",")
+      ),
+    ].join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `transactions-${format(new Date(), "yyyy-MM-dd")}.csv`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
   return (
-    <div className="space-y-6">
-      <TransactionFilters wallets={wallets} onFilterChange={setFilters} />
+    <div className="space-y-6 mt-16">
+      <div className="flex justify-between items-center">
+        <TransactionFilters wallets={wallets} onFilterChange={setFilters} />
+        <Button onClick={downloadTransactions} variant="outline">
+          <Download className="mr-1 h-4 w-4" />
+          Download CSV
+        </Button>
+      </div>
       <TransactionList transactions={filteredTransactions} />
     </div>
   );

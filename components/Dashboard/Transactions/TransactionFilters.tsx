@@ -29,7 +29,7 @@ export default function TransactionFilters({
   onFilterChange,
 }: FilterProps) {
   return (
-    <div className="flex flex-wrap gap-4 mb-6">
+    <div className="flex flex-wrap gap-4">
       <Select
         onValueChange={(value) =>
           onFilterChange({ type: value as TransactionType })
