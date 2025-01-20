@@ -40,7 +40,7 @@ npm install
 3. Set up environment variables:
 
 ```bash
-Rename `.env.example` to `.env`
+Rename `.env.template` to `.env`
 Update the values with your own configurations
 - DATABASE_URL="your_mongodb_url"
 - AUTH_GOOGLE_ID="your_google_client_id"
