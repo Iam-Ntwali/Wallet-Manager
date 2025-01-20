@@ -1,8 +1,7 @@
-import { LoginWithGoogle } from "@/components/Auth/LoginWithGoogle";
 import React from "react";
+import { LoginWithGoogle } from "@/components/Auth/LoginWithGoogle";
 
 const SignIn = () => {
-  // if session is not null, redirect to home page
   return (
     <div className="w-full flex flex-col items-center justify-center bg-gradient-to-tr from-blue-500 to-purple-500 min-h-screen">
       <div className="w-[400px] bg-gray-900 p-4 shadow-md flex flex-col items-center rounded-lg gap-4">

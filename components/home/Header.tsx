@@ -41,7 +41,7 @@ const Header = () => {
           <div className="hidden md:flex items-center space-x-4">
             {session ? (
               <Link
-                href="/dashboard"
+                href="/dashboard/overview"
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
               >
                 Go to Dashboard
@@ -90,7 +90,7 @@ const Header = () => {
           <hr className="my-2" />
           {session ? (
             <Link
-              href="/dashboard"
+              href="/dashboard/overview"
               className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
             >
               Go to Dashboard

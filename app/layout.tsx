@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Schibsted_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
+import { Toaster } from "@/components/ui/toaster";
 
 const primaryFont = Schibsted_Grotesk({
   subsets: ["latin"],
@@ -26,7 +27,8 @@ export default function RootLayout({
         <body
           className={`${primaryFont.variable} bg-black text-white antialiased font-sans`}
         >
-          {children}
+          <main>{children}</main>
+          <Toaster />
         </body>
       </html>
     </SessionProvider>
