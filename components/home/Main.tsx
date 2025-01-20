@@ -1,7 +1,9 @@
+import { auth } from "@/auth";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function HeroSection() {
+  const session = auth();
   return (
     <section className="pt-32 pb-20 bg-gradient-to-b from-blue-50 to-white">
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,7 +19,7 @@ export default function HeroSection() {
             WalletManager&apos;s intuitive expense tracking solution.
           </p>
           <Link
-            href="/auth/signin"
+            href={!session ? `/auth/sign-in` : `/dashboard`}
             className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:bg-gradient-to-r hover:from-purple-700 hover:to-blue-700 transition-colors"
           >
             Start for Free <ArrowRight className="ml-2" />
