@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LayoutDashboard, Wallet, Receipt, PieChart } from "lucide-react";
 
-const routes = [
+export const routes = [
   {
     label: "Overview",
     icon: LayoutDashboard,
@@ -32,7 +32,7 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="space-y-4 py-4 flex flex-col h-full bg-card text-card-foreground border-r">
+    <div className="space-y-4 py-4 flex-col h-full bg-card text-card-foreground border-r hidden md:flex">
       <div className="px-3 py-2">
         <div className="space-y-1">
           {routes.map((route) => (

@@ -9,19 +9,26 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
 import { logout } from "@/actions/authActions";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { MobileSidebar } from "./MobileSidebar";
 
 export default function DashboardHeader() {
   const { data: session } = useSession();
 
   return (
     <header className="h-16 border-b flex items-center px-6 justify-between bg-gray-100 backdrop-blur-md shadow-sm">
-      <div className="flex items-center gap-4">
-        <Button variant="ghost" size="icon" className="md:hidden">
-          <Menu className="h-6 w-6 text-gray-950" />
-        </Button>
+      <div className="flex items-center gap-2">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Menu className="h-6 w-6 text-gray-900" />
+          </SheetTrigger>
+          <SheetContent side="left" className="p-0">
+            <MobileSidebar />
+          </SheetContent>
+        </Sheet>
         <Link
           href="/"
           className="text-lg md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
