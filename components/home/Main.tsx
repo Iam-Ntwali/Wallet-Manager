@@ -19,7 +19,7 @@ export default function HeroSection() {
             WalletManager&apos;s intuitive expense tracking solution.
           </p>
           <Link
-            href={!session ? `/auth/sign-in` : `/dashboard`}
+            href={!session ? `/auth/sign-in` : `/dashboard/overview`}
             className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:bg-gradient-to-r hover:from-purple-700 hover:to-blue-700 transition-colors duration-300 ease-in-out"
           >
             Start for Free <ArrowRight className="ml-2" />

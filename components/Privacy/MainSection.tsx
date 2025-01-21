@@ -9,6 +9,9 @@ const MainSection = () => {
             Privacy Policy
           </h1>
           <div className="space-y-4">
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Terms of Service
+            </h1>
             <h2 className="text-xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               1. Data Collection
             </h2>
@@ -52,7 +55,9 @@ const MainSection = () => {
               Terms of Service
             </h1>
             <div className="space-y-4">
-              <h2 className="text-xl font-semibold">1. Service Usage</h2>
+              <h2 className="text-xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                1. Service Usage
+              </h2>
               <ul className="list-disc pl-6">
                 <li>Users are responsible for maintaining account security</li>
                 <li>Prohibited from sharing account access</li>
