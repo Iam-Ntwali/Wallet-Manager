@@ -32,14 +32,14 @@ const SignIn = () => {
             href="/privacy"
             className="underline-offset-2 font-bold underline bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
           >
-            privacy policy
+            Privacy policy
           </a>{" "}
           and{" "}
           <a
             href="/privacy"
             className="underline-offset-2 font-bold underline bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
           >
-            terms of service
+            Terms of service
           </a>
           .
         </small>
