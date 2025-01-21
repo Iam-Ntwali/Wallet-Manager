@@ -65,7 +65,7 @@ npm run dev
 
 ## Live Demo
 
-Link [https://ntwali-wallet.vercel.app/](https://ntwali-wallet.vercel.app/)
+Link [https://ntwali-wallet.vercel.app/]((https://ntwali-wallet.netlify.app/))
 
 ## Contributing
 
