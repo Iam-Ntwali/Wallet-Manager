@@ -14,15 +14,15 @@ const SignIn = () => {
         <small className="text-xs text-gray-100 text-center mt-3">
           By Signing, you agree with our <br />
           <a
-            href="#"
-            className="font-bold underline bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+            href="/privacy"
+            className="underline-offset-2 font-bold underline bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
           >
             privacy policy
           </a>{" "}
           and{" "}
           <a
-            href="#"
-            className="font-bold underline bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+            href="/privacy"
+            className="underline-offset-2 font-bold underline bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
           >
             terms of service
           </a>
