@@ -22,7 +22,7 @@ export default function DashboardHeader() {
       <div className="flex items-center gap-2">
         <Sheet>
           <SheetTrigger asChild>
-            <Menu className="h-6 w-6 text-gray-900" />
+            <Menu className="h-6 w-6 text-gray-900 md:hidden" />
           </SheetTrigger>
           <SheetContent side="left" className="p-0">
             <MobileSidebar />
@@ -39,13 +39,13 @@ export default function DashboardHeader() {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <div>
-            {session?.user ? (
+            {session?.user?.image ? (
               <Image
                 src={session?.user?.image || ""}
                 alt={session.user.name || ""}
                 width={32}
                 height={32}
-                className="rounded-full border border-gray-900"
+                className="rounded-full border border-gray-900 object-contain"
               />
             ) : (
               <User className="h-6 w-6 text-black" />

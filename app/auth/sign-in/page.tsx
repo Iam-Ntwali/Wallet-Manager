@@ -1,5 +1,6 @@
 import React from "react";
-import { LoginWithGoogle } from "@/components/Auth/LoginWithGoogle";
+// import { LoginWithGoogle } from "@/components/Auth/LoginWithGoogle";
+import { SignInForm } from "@/components/Auth/SignInForm";
 
 const SignIn = () => {
   return (
@@ -9,7 +10,21 @@ const SignIn = () => {
         <p className="text-base md:text-lg text-gray-300 mb-3">
           Welcome to Wallet Manager App.
         </p>
-        <LoginWithGoogle />
+
+        <SignInForm />
+
+        {/* <div className="relative w-full my-4">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-700"></div>
+          </div>
+          <div className="relative flex justify-center text-sm">
+            <span className="px-2 bg-gray-900 text-gray-400">
+              Or continue with
+            </span>
+          </div>
+        </div>
+
+        <LoginWithGoogle /> */}
 
         <small className="text-xs text-gray-100 text-center mt-3">
           By Signing, you agree with our <br />
@@ -32,5 +47,4 @@ const SignIn = () => {
     </div>
   );
 };
-
 export default SignIn;
