@@ -65,7 +65,7 @@ npm run dev
 
 ## Live Demo
 
-Link (Click Here)[https://ntwali-wallet.netlify.app/]
+Link [Click Here](https://wm-coa.netlify.app)
 
 ## Contributing
 
