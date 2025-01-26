@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
+import { loginWithCredentials } from "@/actions/authActions";
 
 export const SignInForm = () => {
   const router = useRouter();
@@ -18,18 +18,18 @@ export const SignInForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    try {
-      const result = await signIn("credentials", {
-        email: formData.email,
-        password: formData.password,
-        redirect: false,
-      });
 
-      if (result?.error) {
+    try {
+      const result = await loginWithCredentials(
+        formData.email,
+        formData.password
+      );
+
+      if (result.error) {
         toast({
           variant: "destructive",
           title: "Authentication Error",
-          description: "Invalid email or password",
+          description: result.error,
         });
       } else {
         toast({
@@ -37,7 +37,6 @@ export const SignInForm = () => {
           description: "Welcome back!",
         });
         router.push("/dashboard/overview");
-        router.refresh();
       }
     } catch (error) {
       toast({

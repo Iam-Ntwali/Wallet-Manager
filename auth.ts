@@ -2,7 +2,14 @@ import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { db } from "./db";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { compare } from "bcryptjs";
+
+async function hashString(str: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(str);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+}
 
 export const {
   handlers: { GET, POST },
@@ -34,10 +41,9 @@ export const {
           throw new Error("User not found");
         }
 
-        const isPasswordValid = await compare(
-          credentials.password as string,
-          user.hashedPassword
-        );
+        const isPasswordValid =
+          (await hashString(credentials.password as string)) ===
+          user.hashedPassword;
 
         if (!isPasswordValid) {
           throw new Error("Invalid password");
