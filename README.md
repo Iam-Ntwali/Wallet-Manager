@@ -43,8 +43,6 @@ npm install
 Rename `.env.template` to `.env`
 Update the values with your own configurations
 - DATABASE_URL="your_mongodb_url"
-- AUTH_GOOGLE_ID="your_google_client_id"
-- AUTH_GOOGLE_SECRET="your_google_client_secret"
 - AUTH_SECRET="generate_your_auth_secret"
 ```
 
@@ -65,7 +63,7 @@ npm run dev
 
 ## Live Demo
 
-Link [Click Here](https://wm-coa.vercel.app)
+[Click Here](https://wm-coa.vercel.app)
 
 ## Contributing
 
