@@ -18,7 +18,7 @@ export const {
   auth,
 } = NextAuth({
   adapter: PrismaAdapter(db),
-  session: { strategy: "jwt" },
+  session: { strategy: "jwt", maxAge: 30 * 24 * 60 * 60 },
   providers: [
     CredentialsProvider({
       name: "credentials",
@@ -66,8 +66,15 @@ export const {
       }
       return session;
     },
+    async jwt({ token, user }) {
+      if (user) {
+        token.sub = user.id;
+      }
+      return token;
+    },
   },
   pages: {
     signIn: "/auth/sign-in",
+    error: "/auth/error",
   },
 });

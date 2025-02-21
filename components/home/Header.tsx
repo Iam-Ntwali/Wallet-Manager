@@ -6,7 +6,6 @@ import { useSession } from "next-auth/react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const { data: session } = useSession();
 
   return (

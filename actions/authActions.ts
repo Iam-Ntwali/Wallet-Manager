@@ -1,8 +1,7 @@
 "use server";
-import { auth, signIn, signOut } from "@/auth";
+import { signIn, signOut } from "@/auth";
 import { revalidatePath } from "next/cache";
 import { db } from "@/db";
-import { v4 as uuidv4 } from "uuid";
 
 async function hashString(str: string): Promise<string> {
   const encoder = new TextEncoder();
@@ -23,41 +22,11 @@ export const loginWithCredentials = async (email: string, password: string) => {
     return { error: "Invalid credentials" };
   }
 
-  const session = await auth();
-
-  if (!session?.user?.id) {
-    return { error: "Authentication failed" };
-  }
-
-  await db.session.create({
-    data: {
-      sessionToken: uuidv4(),
-      userId: session.user.id,
-      expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
-    },
-  });
-
   revalidatePath("/dashboard/overview");
   return { success: true };
 };
 
 export const logout = async () => {
-  const session = await auth();
-
-  const userSession = await db.session.findFirst({
-    where: {
-      userId: session?.user?.id,
-    },
-  });
-
-  if (userSession) {
-    await db.session.delete({
-      where: {
-        id: userSession.id,
-      },
-    });
-  }
-
   await signOut({ redirectTo: "/" });
   revalidatePath("/");
 };
@@ -85,5 +54,7 @@ export const register = async (
     },
   });
 
-  return { success: "User created successfully" };
+  // Log in the user after successful registration
+  const result = await loginWithCredentials(email, password);
+  return result.error ? { error: result.error } : { success: true };
 };
