@@ -3,10 +3,62 @@ import { useState } from "react";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { cn } from "@/lib/utils";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+  const isLoading = status === "loading";
+
+  const NavLink = ({
+    href,
+    children,
+  }: {
+    href: string;
+    children: React.ReactNode;
+  }) => (
+    <Link
+      href={href}
+      className="text-gray-700 hover:text-blue-600 font-normal"
+      onClick={() => setIsOpen(false)}
+    >
+      {children}
+    </Link>
+  );
+
+  const ActionButton = ({ mobile = false }) => {
+    if (isLoading) {
+      return (
+        <div className="px-4 py-2 bg-gray-100 text-gray-400 rounded-lg animate-pulse">
+          Loading...
+        </div>
+      );
+    }
+
+    return session ? (
+      <Link
+        href="/dashboard/overview"
+        className={cn(
+          "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors",
+          mobile && "w-full text-center"
+        )}
+        onClick={() => setIsOpen(false)}
+      >
+        Go to Dashboard
+      </Link>
+    ) : (
+      <Link
+        href="/auth/sign-in"
+        className={cn(
+          "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors",
+          mobile && "w-full text-center"
+        )}
+        onClick={() => setIsOpen(false)}
+      >
+        Get Started
+      </Link>
+    );
+  };
 
   return (
     <header className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b">
@@ -20,46 +72,21 @@ const Header = () => {
               WalletManager
             </Link>
           </div>
+
           <nav className="hidden md:flex space-x-8">
-            <Link
-              href="#features"
-              className="text-gray-700 hover:text-blue-600 font-normal"
-            >
-              Features
-            </Link>
-            <Link
-              href="#how-it-works"
-              className="text-gray-700 hover:text-blue-600 font-normal"
-            >
-              How it Works
-            </Link>
-            <Link
-              href="#faq"
-              className="text-gray-700 hover:text-blue-600 font-normal"
-            >
-              FAQ
-            </Link>
+            <NavLink href="#features">Features</NavLink>
+            <NavLink href="#how-it-works">How it Works</NavLink>
+            <NavLink href="#faq">FAQ</NavLink>
           </nav>
+
           <div className="hidden md:flex items-center space-x-4">
-            {session ? (
-              <Link
-                href="/dashboard/overview"
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-              >
-                Go to Dashboard
-              </Link>
-            ) : (
-              <Link
-                href="/auth/sign-in"
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-              >
-                Get Started
-              </Link>
-            )}
+            <ActionButton />
           </div>
+
           <button
             className="md:hidden text-gray-700 hover:text-blue-600"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
           >
             <Menu className="h-6 w-6 font-semibold" />
           </button>
@@ -67,44 +94,18 @@ const Header = () => {
 
         {/* Mobile Nav menu */}
         <nav
-          className={`${
+          className={cn(
+            "md:hidden bg-transparent space-y-2 p-4 border-t",
             isOpen ? "block" : "hidden"
-          } md:hidden bg-transparent space-y-2 p-4 border-t flex flex-col gap-2 items-center`}
-        >
-          <Link
-            href="#features"
-            className="text-gray-700 hover:text-blue-600 font-normal"
-          >
-            Features
-          </Link>
-          <Link
-            href="#how-it-works"
-            className="text-gray-700 hover:text-blue-600 font-normal"
-          >
-            How it Works
-          </Link>
-          <Link
-            href="#faq"
-            className="text-gray-700 hover:text-blue-600 font-normal"
-          >
-            FAQ
-          </Link>
-          <hr className="my-2" />
-          {session ? (
-            <Link
-              href="/dashboard/overview"
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-            >
-              Go to Dashboard
-            </Link>
-          ) : (
-            <Link
-              href="/auth/sign-in"
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-            >
-              Get Started
-            </Link>
           )}
+        >
+          <div className="flex flex-col gap-4">
+            <NavLink href="#features">Features</NavLink>
+            <NavLink href="#how-it-works">How it Works</NavLink>
+            <NavLink href="#faq">FAQ</NavLink>
+            <hr className="my-2" />
+            <ActionButton mobile />
+          </div>
         </nav>
       </div>
     </header>
