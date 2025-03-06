@@ -7,8 +7,6 @@ export default function Footer() {
       <div className="max-w-screen-2xl mx-auto px-4">
         <div className="text-sm flex items-center justify-between text-gray-400">
           <p>
-            © {new Date().getFullYear()} WalletManager. All rights reserved.{" "}
-            <br />
             Made with ❤️ by{" "}
             <a
               href="https://iamntwali.me"
@@ -17,21 +15,17 @@ export default function Footer() {
               Ntwali
             </a>
           </p>
+          <p>
+            © {new Date().getFullYear()} WalletManager. All rights reserved.
+          </p>
+
           <ul className="gap-2 flex justify-center items-center">
             <li>
               <Link
                 href="/privacy"
                 className="text-gray-400 underline hover:text-white"
               >
-                Privacy
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/privacy"
-                className="text-gray-400 underline hover:text-white"
-              >
-                Terms
+                Terms of Service
               </Link>
             </li>
           </ul>

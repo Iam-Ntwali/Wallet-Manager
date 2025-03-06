@@ -8,20 +8,13 @@ const SignUp = () => {
           Create Account
         </h1>
         <p className="text-base md:text-lg text-gray-300 mb-3">
-          Join Wallet Manager App today.
+          Get started today.
         </p>
 
         <SignUpForm />
 
         <small className="text-xs text-gray-100 text-center mt-3">
           By Creating account, you agree with our <br />
-          <a
-            href="/privacy"
-            className="underline-offset-2 font-bold underline bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-          >
-            Privacy policy
-          </a>{" "}
-          and{" "}
           <a
             href="/privacy"
             className="underline-offset-2 font-bold underline bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
